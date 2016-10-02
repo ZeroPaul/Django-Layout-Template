@@ -144,49 +144,60 @@ LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
     'formatters': {
-        'verbose': {
+        'verbose0': {
             'format': '%(levelname)s %(asctime)s %(module)s %(process)d %(thread)d %(message)s'
+        },
+        'verbose': {
+            'format': "[%(asctime)s] [%(levelname)s] [%(name)s:%(lineno)s] [%(path)s] [%(ip)s] [%(user)s] %(message)s",
+            'datefmt': "%Y-%m-%d %H:%M:%S"
         },
         'simple': {
             'format': '%(levelname)s %(message)s'
         },
-    },
-    'filters': {
-        'special': {
-            '()': 'project.logging.SpecialFilter',
-            'foo': 'bar',
-        },
-        'require_debug_true': {
-            '()': 'django.utils.log.RequireDebugTrue',
+        'verbose_dj': {
+            'format': "[%(asctime)s] %(levelname)s [%(name)s:%(lineno)s] %(message)s",
+            'datefmt': "%Y-%m-%d %H:%M:%S"
         },
     },
     'handlers': {
-        'console': {
-            'level': 'INFO',
-            'filters': ['require_debug_true'],
-            'class': 'logging.StreamHandler',
-            'formatter': 'simple'
+        'file_django': {
+            'level': 'DEBUG',
+            #'level': os.getenv('DJANGO_LOG_LEVEL', 'INFO'),
+            'class': 'logging.FileHandler',
+            'filename': os.path.join(
+                BASE_DIR, 'temp/logs',
+                'dj%s.txt' % (datetime.datetime.now().strftime("%Y-%m-%d"))
+            ),
+            'formatter': 'verbose_dj'
         },
-        'mail_admins': {
-            'level': 'ERROR',
-            'class': 'django.utils.log.AdminEmailHandler',
-            'filters': ['special']
-        }
+        'file_log': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': os.path.join(
+                BASE_DIR, 'temp/logs',
+                'log%s.txt' % (datetime.datetime.now().strftime("%Y-%m-%d"))
+            ),
+            'formatter': 'verbose'
+        },
+        'console': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+            'formatter': 'verbose0'
+        },
     },
     'loggers': {
         'django': {
-            'handlers': ['console'],
-            'propagate': True,
-        },
-        'django.request': {
-            'handlers': ['mail_admins'],
-            'level': 'ERROR',
+            'handlers': ['file_django'],
             'propagate': False,
+            'level': 'DEBUG',
         },
-        '{{ project_name }}.custom': {
-            'handlers': ['console', 'mail_admins'],
-            'level': 'INFO',
-            'filters': ['special']
-        }
-    }
+        'apps': {
+            'handlers': ['file_log'],
+            'level': 'DEBUG',
+        },
+    },
+    'root': {
+        'handlers': ['console', 'file_log', ],
+        'level': 'INFO'
+    },
 }
