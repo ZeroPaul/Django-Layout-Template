@@ -3,7 +3,7 @@ Django Layout Template Project
 ==============================
 
 
-A project template for Django 1.10
+A project template for Django 1.10,
 based in django-twoscoops-project
 
 
@@ -35,11 +35,12 @@ Creating your App
 =================
 
 
-To create a new App Django called '**my_app**' using django-layout-template-app, 
-    
+To create a new App Django called '**my_app**' using django-layout-template-app.
+In the following path::
+
     $ project/project_name/apps
 
 
-run the following command::
+Run the following command::
 
-    $ django-admin.py startapp --template=https://github.com/ZeroPaul/Django-Layout-Template-App/archive/master.zip --extension=py,rst,html my_app
+    $ django-admin.py startapp --template=https://github.com/ZeroPaul/Django-Layout-Template-App/archive/master.zip --extension=py my_app
