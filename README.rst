@@ -23,10 +23,12 @@ To create a new Django project called '**my_project**' using django-layout-templ
     $ django-admin.py startproject --template=https://github.com/ZeroPaul/Django-Layout-Template-Project/archive/master.zip --extension=py,rst,html my_project
 
 
-==============================
+==========================
 Django Layout Template App
-==============================
+==========================
 
+
+A app template for Django
 
 
 Creating your App
