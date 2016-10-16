@@ -16,7 +16,7 @@ To install Django in the new virtual environment, run the following command::
 
 
 Creating your Project
-======================
+=====================
 
 To create a new Django project called '**my_project**' using django-layout-template-project, run the following command::
 
@@ -30,7 +30,7 @@ Django Layout Template App
 
 
 Creating your App
-=====================
+=================
 
 
 To create a new App Django called '**my_app**' using django-layout-template-app, 
