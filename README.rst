@@ -12,12 +12,13 @@ To install Django in the new virtual environment, run the following command::
 
     $ pip install django
 
- Creating your Project
+
+Creating your Project
 ======================
 
 To create a new Django project called '**my_project**' using django-layout-template-project, run the following command::
 
-    $ django-admin.py startapp --template=https://github.com/ZeroPaul/Django-Layout-Template-Project/archive/master.zip --extension=py,rst,html my_project
+    $ django-admin.py startproject --template=https://github.com/ZeroPaul/Django-Layout-Template-Project/archive/master.zip --extension=py,rst,html my_project
 
 
 ==============================
